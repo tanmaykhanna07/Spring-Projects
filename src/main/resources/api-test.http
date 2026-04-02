@@ -1,0 +1,7 @@
+POST http://localhost:8080/api/projects
+Content-Type: application/json
+
+{
+  "projectName": "Completing Java in 1 day",
+  "description": "My attempt at completing java in one day and making web servers and applications"
+}
