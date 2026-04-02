@@ -18,8 +18,19 @@ public class ProjectController {
     public List<Project> getAllProjects(){
         return projectRepository.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Project getProjectById(@PathVariable Integer id){
+        return projectRepository.findById(id).orElse(null);
+    }
+
     @PostMapping
     public Project addProject(@RequestBody Project newProject){
         return projectRepository.save(newProject);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProjectById(@PathVariable Integer id){
+        projectRepository.deleteById(id);
     }
 }

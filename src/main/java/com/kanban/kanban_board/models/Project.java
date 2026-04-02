@@ -15,7 +15,7 @@ public class Project {
     @Column(name = "description")
     private String description;
 
-    Project(){};
+    public Project(){};
 
     public int getProjectId() {
         return projectId;

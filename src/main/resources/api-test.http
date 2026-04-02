@@ -1,7 +1,10 @@
-POST http://localhost:8080/api/projects
+POST http://localhost:8080/api/tasks
 Content-Type: application/json
 
 {
-  "projectName": "Completing Java in 1 day",
-  "description": "My attempt at completing java in one day and making web servers and applications"
+  "project": {
+    "projectId" : 2
+  },
+  "title" : "Kanban Board",
+  "status" : "IN_PROGRESS"
 }
