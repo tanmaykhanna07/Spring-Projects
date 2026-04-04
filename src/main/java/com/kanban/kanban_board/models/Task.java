@@ -1,5 +1,6 @@
 package com.kanban.kanban_board.models;
 
+import com.kanban.kanban_board.enums.Status;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,14 +13,15 @@ public class Task {
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status",nullable = false)
-    private String status;
+    private Status status;
 
     @ManyToOne
     @JoinColumn(name = "project_id",nullable = false)
     private Project project;
 
-    public Task(){};
+    public Task(){}
 
     public int getTaskId() {
         return taskId;
@@ -37,11 +39,11 @@ public class Task {
         this.title = title;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

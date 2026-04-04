@@ -1,5 +1,6 @@
 package com.kanban.kanban_board.Services;
 
+import com.kanban.kanban_board.Exceptions.ResourceNotFoundException;
 import com.kanban.kanban_board.Repositories.TaskRepository;
 import com.kanban.kanban_board.models.Task;
 import org.springframework.stereotype.Service;
@@ -17,22 +18,35 @@ public class TaskService {
         return taskRepository.findAll();
     }
     public Task getTaskById(Integer id){
-        return taskRepository.findById(id).orElse(null);
+        return taskRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("The provided ID: "+ id+ " doesn't exist in the database")
+        );
     }
-    public Task saveTask(Task newtask){
-        return taskRepository.save(newtask);
+    public Task saveTask(Task newTask) {
+        if(newTask.getTitle() == null || newTask.getTitle().trim().isEmpty()){
+            throw new IllegalArgumentException("Title cannot be empty");
+        }
+        newTask.setTitle(newTask.getTitle().trim().toUpperCase());
+        return taskRepository.save(newTask);
     }
     public void deleteTaskById(Integer id){
+        if(!taskRepository.existsById(id)){
+            throw new ResourceNotFoundException("ID: " + id+ " not found, couldn't delete");
+        }
         taskRepository.deleteById(id);
     }
     public Task updateTaskById(Task updatedTask,Integer id){
-        Task existingTask = taskRepository.findById(id).orElse(null);
-        if(existingTask != null){
-            existingTask.setTitle(updatedTask.getTitle());
-            existingTask.setStatus(updatedTask.getStatus());
-
-            return taskRepository.save(existingTask);
+        Task existingTask = taskRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("The provided ID: "+ id+ " doesn't exist in the database")
+        );
+        if(updatedTask.getTitle() == null || updatedTask.getTitle().trim().isEmpty()){
+            throw new IllegalArgumentException("Title cannot be empty");
         }
-        return null;
+
+        updatedTask.setTitle(updatedTask.getTitle().trim().toUpperCase());
+        existingTask.setTitle(updatedTask.getTitle());
+        existingTask.setStatus(updatedTask.getStatus());
+
+        return taskRepository.save(existingTask);
     }
 }
