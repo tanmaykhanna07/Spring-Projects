@@ -1,6 +1,6 @@
 package com.kanban.kanban_board.Controllers;
 
-import com.kanban.kanban_board.Repositories.TaskRepository;
+import com.kanban.kanban_board.Services.TaskService;
 import com.kanban.kanban_board.models.Task;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,37 +10,28 @@ import java.util.List;
 @RequestMapping("/api/tasks")
 public class TaskController {
 
-    private final TaskRepository taskRepository;
-    public TaskController(TaskRepository taskRepository){
-        this.taskRepository = taskRepository;
+    private final TaskService taskService;
+    public TaskController(TaskService taskService){
+        this.taskService =taskService;
     }
     @GetMapping
     public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+        return taskService.getAllTasks();
     }
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable Integer id){
-        return taskRepository.findById(id).orElse(null);
+        return taskService.getTaskById(id);
     }
     @PostMapping
     public Task saveTask(@RequestBody Task newTask){
-        return taskRepository.save(newTask);
+        return taskService.saveTask(newTask);
     }
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable Integer id){
-        taskRepository.deleteById(id);
+        taskService.deleteTaskById(id);
     }
     @PutMapping("/{id}")
     public Task updateTask(@RequestBody Task updatedTask, @PathVariable Integer id){
-        Task existingTask = taskRepository.findById(id).orElse(null);
-
-        if(existingTask != null){
-            existingTask.setTitle(updatedTask.getTitle());
-            existingTask.setStatus(updatedTask.getStatus());
-
-            return taskRepository.save(existingTask);
-        }
-
-        return null;
+        return taskService.updateTaskById(updatedTask,id);
     }
 }
