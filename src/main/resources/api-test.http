@@ -1,10 +1,11 @@
+###
 POST http://localhost:8080/api/tasks
 Content-Type: application/json
 
 {
+  "title": "Wire up the foreign keys",
+  "status": "TODO",
   "project": {
-    "projectId" : 2
-  },
-  "title" : "Kanban Board",
-  "status" : "IN_PROGRESS"
+    "projectId": 2
+  }
 }

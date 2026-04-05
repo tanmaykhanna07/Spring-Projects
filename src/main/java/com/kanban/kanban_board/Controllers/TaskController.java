@@ -1,6 +1,7 @@
 package com.kanban.kanban_board.Controllers;
 
 import com.kanban.kanban_board.Services.TaskService;
+import com.kanban.kanban_board.enums.Status;
 import com.kanban.kanban_board.models.Task;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,10 @@ public class TaskController {
     @GetMapping("/{id}")
     public Task getTaskById(@PathVariable Integer id){
         return taskService.getTaskById(id);
+    }
+    @GetMapping("/status/{status}")
+    public List<Task> getTaskByStatus(@PathVariable Status status){
+        return taskService.getTaskByStatus(status);
     }
     @PostMapping
     public Task saveTask(@RequestBody Task newTask){
