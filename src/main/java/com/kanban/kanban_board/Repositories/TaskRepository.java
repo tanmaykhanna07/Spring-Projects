@@ -9,5 +9,7 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task,Integer> {
     public List<Task> findTaskByStatus(Status status);
     public List<Task> findTaskByTitleContainingIgnoreCase(String keyword);// Translates to: SELECT * FROM tasks WHERE LOWER(title) LIKE LOWER('%keyword%')
-    public List<Task> findTaskByStatusOrderByTaskIdAsc(Status status);//SELECT * FROM tasks WHERE status = ? ORDER BY task_id ASC;
+    public List<Task> findTaskByStatusOrderByTaskIdAsc(Status status);
+    public List<Task> findTaskByProject_ProjectName(String projectName);//SELECT * FROM tasks WHERE projectName = ?
+    public boolean existsTaskByProject_ProjectName(String projectName);
 }

@@ -33,6 +33,13 @@ public class TaskService {
         return taskRepository.findTaskByStatus(status);
     }
 
+    public List<Task> getTaskByProjectName(String projectName){
+        if(!taskRepository.existsTaskByProject_ProjectName(projectName)){
+            throw new ResourceNotFoundException("Task with this project name is not found.");
+        }
+        return taskRepository.findTaskByProject_ProjectName(projectName);
+    }
+
     public Task saveTask(Task newTask) {
         if(newTask.getTitle() == null || newTask.getTitle().trim().isEmpty()){
             throw new IllegalArgumentException("Title cannot be empty");

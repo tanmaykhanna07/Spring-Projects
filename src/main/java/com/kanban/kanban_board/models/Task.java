@@ -1,6 +1,5 @@
 package com.kanban.kanban_board.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.kanban.kanban_board.enums.Status;
 import jakarta.persistence.*;
