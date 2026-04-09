@@ -20,7 +20,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "project_id",nullable = false)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)// Write in a Task object Jackson makes and not the database. It is not allowed to read the project and projectId and sent it out(get).
     private Project project;
 
     public Task(){}

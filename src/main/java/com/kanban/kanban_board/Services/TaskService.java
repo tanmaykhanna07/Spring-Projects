@@ -3,6 +3,7 @@ package com.kanban.kanban_board.Services;
 import com.kanban.kanban_board.Exceptions.ResourceNotFoundException;
 import com.kanban.kanban_board.Repositories.ProjectRepository;
 import com.kanban.kanban_board.Repositories.TaskRepository;
+import com.kanban.kanban_board.dto.TaskResponseDTO;
 import com.kanban.kanban_board.enums.Status;
 import com.kanban.kanban_board.models.Project;
 import com.kanban.kanban_board.models.Task;
@@ -76,5 +77,14 @@ public class TaskService {
         existingTask.setStatus(updatedTask.getStatus());
 
         return taskRepository.save(existingTask);
+    }
+
+    private TaskResponseDTO convertToDTO(Task rawTask){
+        return new TaskResponseDTO(
+                rawTask.getTaskId(),
+                rawTask.getTitle(),
+                rawTask.getStatus(),
+                rawTask.getProject().getProjectName()
+        );
     }
 }
