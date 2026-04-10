@@ -19,6 +19,6 @@ public class ClientAccountController {
     }
     @GetMapping("/puchi/account/{accountId}")
     public ClientResponseDTO getClientById(@PathVariable Integer accountId){
-        return clientAccountService
+        return clientAccountService.getClientById(accountId);
     }
 }

@@ -12,7 +12,7 @@ public class ClientAccountService {
         this.clientAccountRepository = clientAccountRepository;
     }
 
-    private ClientResponseDTO getClientById(Integer id){
+    public ClientResponseDTO getClientById(Integer id){
         ClientAccount clientAccount = clientAccountRepository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Couldn't find account with this id. Try again")
         );
