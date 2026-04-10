@@ -5,22 +5,22 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "client-account")
+@Table(name = "client_account")
 public class ClientAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer accountId;
 
-    @Column(name = "company-name", nullable = false)
+    @Column(name = "company_name", nullable = false)
     private String companyName;
 
-    @Column(name = "max-licenses")
+    @Column(name = "max_licenses")
     private Integer maxLicenses;
 
-    @Column(name = "is-active")
+    @Column(name = "is_active")
     private boolean isActive;
 
-    @OneToMany(mappedBy = "licenseId", orphanRemoval = true, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "clientAccount", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<DeveloperLicense> developerLicenses;
 
     public ClientAccount(){};

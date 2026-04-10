@@ -9,7 +9,9 @@ import com.company.license_manager.models.ClientAccount;
 import com.company.license_manager.models.DeveloperLicense;
 import com.company.license_manager.repositories.ClientAccountRepository;
 import com.company.license_manager.repositories.DeveloperLicenseRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DeveloperLicenseService {
     private final DeveloperLicenseRepository developerLicenseRepository;
     private final ClientAccountRepository clientAccountRepository;

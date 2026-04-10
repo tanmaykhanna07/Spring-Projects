@@ -3,16 +3,16 @@ package com.company.license_manager.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "developer-license")
+@Table(name = "developer_license")
 public class DeveloperLicense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer licenseId;
 
-    @Column(name = "developer-name")
+    @Column(name = "developer_name")
     private String developerName;
 
-    @Column(name = "device-macaddress")
+    @Column(name = "device_macaddress")
     private String deviceMacAddress;
 
     @ManyToOne

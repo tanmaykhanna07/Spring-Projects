@@ -4,7 +4,9 @@ import com.company.license_manager.dto.ClientResponseDTO;
 import com.company.license_manager.exceptions.ResourceNotFoundException;
 import com.company.license_manager.models.ClientAccount;
 import com.company.license_manager.repositories.ClientAccountRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ClientAccountService {
     private final ClientAccountRepository clientAccountRepository;
 
@@ -18,7 +20,6 @@ public class ClientAccountService {
         );
 
         return convertToDTO(clientAccount);
-
     }
 
     private ClientResponseDTO convertToDTO(ClientAccount clientAccount){
@@ -26,7 +27,7 @@ public class ClientAccountService {
             clientAccount.getAccountId(),
             clientAccount.getCompanyName(),
             clientAccount.isActive(),
-            clientAccount.getMaxLicenses()
+            clientAccount.getDeveloperLicenses().size()
         );
     }
 }

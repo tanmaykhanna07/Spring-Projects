@@ -1,0 +1,39 @@
+POST http://localhost:8080/puchi/license
+Content-Type: application/json
+
+
+{
+  "developerName": "Pookie",
+  "deviceMacAddress": "11:22:33:44:55:66",
+  "clientAccountId": 1
+}
+###
+POST http://localhost:8080/puchi/license
+Content-Type: application/json
+
+
+{
+  "developerName": "Meowy03",
+  "deviceMacAddress": "11:22:33:44:55:66",
+  "clientAccountId": 1
+}
+###
+POST http://localhost:8080/puchi/license
+Content-Type: application/json
+
+
+{
+  "developerName": "Not meowy03",
+  "deviceMacAddress": "11:22:33:44:55:66",
+  "clientAccountId": 1
+}
+###
+POST http://localhost:8080/puchi/license
+Content-Type: application/json
+
+
+{
+  "developerName": "Rushing the rocker",
+  "deviceMacAddress": "11:22:33:44:55:66",
+  "clientAccountId": 1
+}
